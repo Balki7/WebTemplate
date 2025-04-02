@@ -1,62 +1,38 @@
-  <!DOCTYPE html>
-  <html lang="en">
+<!DOCTYPE html>
+<html>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Comparison</title>
-    <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css">
-  </head>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-  <body>
-    <header>
-      <div class="header-content">
-        <h1>Car Catalog</h1>
-        <a href="favorites.html" id="favorites-link">My Favorites</a>
-      </div>
-    </header>
+<body>
+  <header>
+    <h1>Car Catalog</h1>
+    <div class="buttons">
+      <button id="loginbutton">Login</button>
+      <button id="signupbutton">SignUp</button>
+    </div>
+  </header>
 
-    <main>
-      <div class="car-list">
-        <div class="car" data-id="1">
-          <img src="car1.jpg" alt="Car 1">
-          <h3>Car 1</h3>
-          <p>Speed: 200 km/h</p>
-          <p>Engine Type: V8</p>
-          <p>Fuel Efficiency: 15 km/l</p>
-          <p>Price: $50,000</p>
-          <p>Year: 2022</p>
-          <button class="favorite-btn">Add to Favorites</button>
-        </div>
-        <div class="car" data-id="2">
-          <img src="car2.jpg" alt="Car 2">
-          <h3>Car 2</h3>
-          <p>Speed: 180 km/h</p>
-          <p>Engine Type: Turbocharged 4-Cylinder</p>
-          <p>Fuel Efficiency: 20 km/l</p>
-          <p>Price: $35,000</p>
-          <p>Year: 2021</p>
-          <button class="favorite-btn">Add to Favorites</button>
-        </div>
-        <div class="car" data-id="3">
-          <img src="car3.jpg" alt="Car 3">
-          <h3>Car 3</h3>
-          <p>Speed: 220 km/h</p>
-          <p>Engine Type: V12</p>
-          <p>Fuel Efficiency: 12 km/l</p>
-          <p>Price: $80,000</p>
-          <p>Year: 2023</p>
-          <button class="favorite-btn">Add to Favorites</button>
-        </div>
-      </div>
-    </main>
+  <div class="popup-overlay" id="loginPopup" onclick="closePopup(event, 'loginPopup')">
+    <div class="popup-box" onclick="event.stopPropagation()">
+      <h2>Login</h2>
+      <input type="text" placeholder="Username" id="username">
+      <input type="password" placeholder="Password" id="password">
+      <button id="submitlogin">Submit</button>
+    </div>
+  </div>
 
-    <footer>
-      <p>&copy; 2025 Car Comparison</p>
-    </footer>
+  <div class="popup-overlay" id="signupPopup" onclick="closePopup(event, 'signupPopup')">
+    <div class="popup-box" onclick="event.stopPropagation()">
+      <h2>Signup</h2>
+      <input type="text" placeholder="Username" id="signup-username">
+      <input type="password" placeholder="Password" id="signup-password">
+      <input type="password" placeholder="Confirm Password" id="signup-confirm-password">
+      <button id="submitsignup">Submit</button>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
 
-    <script src="scripts.js"></script>
-  </body>
-
-  </html>
+</html>
