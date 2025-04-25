@@ -29,7 +29,13 @@ class Program
         var file = new File(request.Path);
         response.Send(file);
       }
-      else if (request.Path == "/api/auth/register" && request.HttpMethod == "POST")
+      else if (request.ExpectsHtml())
+      {
+        var file = new File("website/pages/404.html");
+        response.SetStatusCode(404);
+        response.Send(file);
+      }
+      else
       {
         try
         {

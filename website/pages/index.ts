@@ -1,3 +1,5 @@
+import { send } from "../utilities";
+
 // Define interfaces for API responses
 interface AuthResponse {
     success: boolean;
@@ -33,14 +35,15 @@ submitlogin.onclick = async function () {
 
     try {
         // Call your C# authentication API endpoint
-        const response = await fetch('/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
+        // const response = await fetch('/api/auth/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json'
+        //     },
+        //     body: JSON.stringify({ username, password })
+        // });
+        const response = await send('api/auth/login', [username, password]);
 
         // Handle different HTTP status codes
         if (!response.ok) {
@@ -105,14 +108,8 @@ submitsignup.onclick = async function () {
 
     try {
         // Call your C# registration API endpoint
-        const response = await fetch('/api/auth/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
+        const response = await send('api/auth/register', [ username, password ]);
+
 
         // Handle different HTTP status codes
         if (!response.ok) {
