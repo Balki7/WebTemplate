@@ -1,37 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Car Catalog</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 
 <body>
-  <header>
-    <h1>Car Catalog</h1>
+  <header class="header">
+    <h1 class="title">🚗 Car Catalog</h1>
     <div class="buttons">
-      <button id="loginbutton">Login</button>
-      <button id="signupbutton">SignUp</button>
+      <button id="loginbutton" class="btn">Login</button>
+      <button id="signupbutton" class="btn btn-secondary">Sign Up</button>
     </div>
   </header>
 
+  <!-- Login Popup -->
   <div class="popup-overlay" id="loginPopup" onclick="closePopup(event, 'loginPopup')">
     <div class="popup-box" onclick="event.stopPropagation()">
       <h2>Login</h2>
-      <input type="text" placeholder="Username" id="username">
-      <input type="password" placeholder="Password" id="password">
-      <button id="submitlogin">Submit</button>
+      <input type="text" placeholder="Username" id="username" />
+      <input type="password" placeholder="Password" id="password" />
+      <button id="submitlogin" class="btn">Submit</button>
     </div>
   </div>
 
+  <!-- Signup Popup -->
   <div class="popup-overlay" id="signupPopup" onclick="closePopup(event, 'signupPopup')">
     <div class="popup-box" onclick="event.stopPropagation()">
-      <h2>Signup</h2>
-      <input type="text" placeholder="Username" id="signup-username">
-      <input type="password" placeholder="Password" id="signup-password">
-      <input type="password" placeholder="Confirm Password" id="signup-confirm-password">
-      <button id="submitsignup">Submit</button>
+      <h2>Sign Up</h2>
+      <input type="text" placeholder="Username" id="signup-username" />
+      <input type="password" placeholder="Password" id="signup-password" />
+      <input type="password" placeholder="Confirm Password" id="signup-confirm-password" />
+      <button id="submitsignup" class="btn">Submit</button>
     </div>
   </div>
+
   <script src="index.js"></script>
 </body>
 
