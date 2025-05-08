@@ -22,8 +22,8 @@
   <div class="popup-overlay" id="loginPopup" onclick="closePopup(event, 'loginPopup')">
     <div class="popup-box" onclick="event.stopPropagation()">
       <h2>Login</h2>
-      <input type="text" placeholder="Username" id="username" />
-      <input type="password" placeholder="Password" id="password" />
+      <input type="text" placeholder="Username" id="loginusername" />
+      <input type="password" placeholder="Password" id="loginpassword" />
       <button id="submitlogin" class="btn">Submit</button>
     </div>
   </div>
@@ -32,14 +32,14 @@
   <div class="popup-overlay" id="signupPopup" onclick="closePopup(event, 'signupPopup')">
     <div class="popup-box" onclick="event.stopPropagation()">
       <h2>Sign Up</h2>
-      <input type="text" placeholder="Username" id="signup-username" />
-      <input type="password" placeholder="Password" id="signup-password" />
-      <input type="password" placeholder="Confirm Password" id="signup-confirm-password" />
+      <input type="text" placeholder="Username" id="signupusername" />
+      <input type="password" placeholder="Password" id="signuppassword" />
+      <input type="password" placeholder="Confirm Password" id="signupconfirmpassword" />
       <button id="submitsignup" class="btn">Submit</button>
     </div>
   </div>
 
-  <script src="index.js"></script>
+  <script src="index.js" type="module"></script>
 </body>
 
 </html>
