@@ -8,14 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const utilities_1 = require("../utilities");
-// DOM element references
 let submitlogin = document.getElementById("submitlogin");
 let submitsignup = document.getElementById("submitsignup");
 let signupbutton = document.getElementById("signupbutton");
 let loginbutton = document.getElementById("loginbutton");
-// Toggle login popup visibility
+let signupconfirmpassword = document.getElementById("signupconfirmpassword");
+let signuppassword = document.getElementById("signuppassword");
+let signupusername = document.getElementById("signupusername");
+let loginpassword = document.getElementById("loginpassword");
+let loginusername = document.getElementById("loginusername");
 loginbutton.onclick = function () {
     const popup = document.getElementById("loginPopup");
     if (popup)
@@ -43,7 +44,7 @@ submitlogin.onclick = function () {
             //     },
             //     body: JSON.stringify({ username, password })
             // });
-            const response = yield (0, utilities_1.send)('api/auth/login', [username, password]);
+            const response = yield send('api/auth/login', [username, password]);
             // Handle different HTTP status codes
             if (!response.ok) {
                 if (response.status === 401) {
@@ -104,7 +105,7 @@ submitsignup.onclick = function () {
         }
         try {
             // Call your C# registration API endpoint
-            const response = yield (0, utilities_1.send)('api/auth/register', [username, password]);
+            const response = yield send('api/auth/register', [username, password]);
             // Handle different HTTP status codes
             if (!response.ok) {
                 if (response.status === 409) {
@@ -148,3 +149,35 @@ function closePopup(event, popupId) {
     }
 }
 window.closePopup = closePopup;
+submitsignup.onclick = function () {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (signupconfirmpassword.value != signuppassword.value) {
+            alert("Passwords do not match");
+            return;
+        }
+        let userId = yield send("signUp", [
+            signupusername.value,
+            signuppassword.value,
+        ]);
+        if (userId == null) {
+            alert("Username already exists");
+            return;
+        }
+        localStorage.setItem("userId", userId);
+        location.href = "index.html";
+    });
+};
+submitlogin.onclick = function () {
+    return __awaiter(this, void 0, void 0, function* () {
+        let userId = yield send("logIn", [
+            loginusername.value,
+            loginpassword.value,
+        ]);
+        if (userId == null) {
+            alert("Incorrect username or password");
+            return;
+        }
+        localStorage.setItem("userId", userId);
+        location.href = "Compare.html";
+    });
+};

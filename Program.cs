@@ -91,9 +91,7 @@ class Program
 
 class Database() : DbBase("database")
 {
-  /*──────────────────────────────╮
-  │ Add your database tables here │
-  ╰──────────────────────────────*/
+  public DbSet<User> Users { get; set; } = default!;
 }
 
 class Database : DbBase

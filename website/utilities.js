@@ -1,0 +1,19 @@
+export async function send(path, body) {
+    let response = await fetch(`/${path}`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "X-Is-Custom": "true"
+        }
+    });
+    try {
+        let obj = await response.json();
+        let data = obj.data ?? null;
+        return data;
+    }
+    catch {
+        return null;
+    }
+}
+;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbGl0aWVzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsidXRpbGl0aWVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBQyxLQUFLLFVBQVUsSUFBSSxDQUFDLElBQVksRUFBRSxJQUFTO0lBQ2hELElBQUksUUFBUSxHQUFHLE1BQU0sS0FBSyxDQUN4QixJQUFJLElBQUksRUFBRSxFQUNWO1FBQ0UsTUFBTSxFQUFFLE1BQU07UUFDZCxJQUFJLEVBQUUsSUFBSSxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUM7UUFDMUIsT0FBTyxFQUFFO1lBQ1AsYUFBYSxFQUFFLE1BQU07U0FDdEI7S0FDRixDQUNGLENBQUM7SUFFRixJQUFJLENBQUM7UUFDSCxJQUFJLEdBQUcsR0FBRyxNQUFNLFFBQVEsQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUNoQyxJQUFJLElBQUksR0FBRyxHQUFHLENBQUMsSUFBSSxJQUFJLElBQUksQ0FBQztRQUM1QixPQUFPLElBQUksQ0FBQztJQUNkLENBQUM7SUFDRCxNQUFNLENBQUM7UUFDTCxPQUFPLElBQUksQ0FBQztJQUNkLENBQUM7QUFDSCxDQUFDO0FBQUEsQ0FBQyJ9
