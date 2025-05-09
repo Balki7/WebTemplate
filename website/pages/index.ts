@@ -79,7 +79,7 @@ submitsignup.onclick = async function () {
     localStorage.setItem("userId", userId);
 
 
-    location.href = "loahshana.html";
+    location.href = "index.html";
 };
 
 submitlogin.onclick = async function () {
