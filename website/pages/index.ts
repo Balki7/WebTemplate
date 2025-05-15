@@ -1,3 +1,5 @@
+import { send } from "../utilities";
+
 let submitlogin = document.getElementById("submitlogin") as HTMLButtonElement;
 let submitsignup = document.getElementById("submitsignup") as HTMLButtonElement;
 let signupbutton = document.getElementById("signupbutton") as HTMLButtonElement;
@@ -22,46 +24,20 @@ submitlogin.onclick = async function () {
     // Input validation
     const username = usernameInput?.value;
     const password = passwordInput?.value;
-    
+
     if (!username || !password) {
         alert("Please enter both username and password");
         return;
     }
 
-    try {
-        // Call your C# authentication API endpoint
-        // const response = await fetch('/api/auth/login', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json'
-        //     },
-        //     body: JSON.stringify({ username, password })
-        // });
-        const response = await send('api/auth/login', [username, password]);
+    let userId = await send('login', [username, password]) as string | null;
 
-        // Handle different HTTP status codes
-        if (!response.ok) {
-            if (response.status === 401) {
-                alert("Invalid username or password");
-                return;
-            }
-            throw new Error(`Server returned ${response.status}`);
-        }
-
-        const data = await response.json() as AuthResponse;
-        if (data.success && data.token) {
-            console.log("Login successful");
-            // Store JWT auth token in local storage
-            localStorage.setItem('authToken', data.token);
-            // Redirect to dashboard or home page
-            window.location.href = "/dashboard";
-        } else {
-            alert(data.message || "Login failed");
-        }
-    } catch (error) {
-        console.error("Login error:", error);
-        alert("Login failed. Please try again.");
+    if (userId != null) {
+        console.log("Login successful");
+        localStorage.setItem('userId', userId);
+        window.location.href = "/dashboard";
+    } else {
+        alert("Login failed");
     }
 
     const popup = document.getElementById("loginPopup");
@@ -103,7 +79,7 @@ submitsignup.onclick = async function () {
 
     try {
         // Call your C# registration API endpoint
-        const response = await send('api/auth/register', [ username, password ]);
+        const response = await send('api/auth/register', [username, password]);
 
 
         // Handle different HTTP status codes
@@ -119,16 +95,16 @@ submitsignup.onclick = async function () {
         if (data.success) {
             console.log("Signup successful");
             alert("Account created successfully! Please login.");
-            
+
             // Clear form and switch to login page
             usernameInput.value = "";
             passwordInput.value = "";
             confirmInput.value = "";
-            
+
             // Close signup popup
             const signupPopup = document.getElementById("signupPopup");
             if (signupPopup) signupPopup.style.display = "none";
-            
+
             // Open login popup
             const loginPopup = document.getElementById("loginPopup");
             if (loginPopup) loginPopup.style.display = "flex";
