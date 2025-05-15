@@ -2,15 +2,12 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Dynamic;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.Json;
 
 class Program
 {
   static void Main()
   {
-    int port = 5555;
+    int port = 5000;
 
     var server = new Server(port);
 
@@ -23,7 +20,7 @@ class Program
     {
       (var request, var response) = server.WaitForRequest();
 
-      Console.WriteLine($"Received a request with the path: {request.Path}");
+      Console.WriteLine($"Recieved a request with the path: {request.Path}");
 
       if (File.Exists(request.Path))
       {
@@ -75,6 +72,7 @@ class Program
             response.Send(user?.Id);
           }
           response.SetStatusCode(405);
+
           database.SaveChanges();
         }
         catch (Exception exception)
@@ -94,26 +92,9 @@ class Database() : DbBase("database")
   public DbSet<User> Users { get; set; } = default!;
 }
 
-class Database : DbBase
+class User(string id, string username, string password)
 {
-  public Database() : base("database") { }
-  
-  public DbSet<User> Users { get; set; }
-}
-
-class User
-{
-  // Default constructor for EF Core
-  public User() { }
-
-  public User(string id, string username, string password)
-  {
-    Id = id;
-    Username = username;
-    Password = password;
-  }
-  
-  [Key] public string Id { get; set; }
-  public string Username { get; set; }
-  public string Password { get; set; }  // Stores hashed password
+  [Key] public string Id { get; set; } = id;
+  public string Username { get; set; } = username;
+  public string Password { get; set; } = password;
 }
