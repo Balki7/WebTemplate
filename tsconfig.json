@@ -1,14 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "lib": ["dom", "es2015", "es2016", "es2017"],
-    "module": "commonjs",
-    "strict": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "inlineSourceMap": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist"
-  },
-  "include": ["website/**/*"],
-  "exclude": ["node_modules"]
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "useUnknownInCatchVariables": true,
+    "alwaysStrict": true,
+    "exactOptionalPropertyTypes": true,
+    "noPropertyAccessFromIndexSignature": true,
+  }
 }

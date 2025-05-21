@@ -1,7 +1,5 @@
 #logOutButton {
     border: none;
     background: none;
-    /* אם גם לא רוצים רקע */
-    cursor: pointer;;;
-    /* כדי שיראה כמו כפתור */
+    cursor: pointer;
 }

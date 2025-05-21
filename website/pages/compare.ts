@@ -1,6 +1,6 @@
 import { send } from "../utilities";
 
-console.log("hi");
+console.log("hello");
 
 let logOutButton = document.getElementById("logOutButton") as HTMLButtonElement;
 

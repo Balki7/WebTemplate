@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- <html lang="en"> -->
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <meta charset="UTF-8" /> -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
   <title>Car Catalog</title>
   <link rel="stylesheet" href="index.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 
 <body>
@@ -18,24 +17,23 @@
     </div>
   </header>
 
-  <!-- Login Popup -->
-  <div class="popup-overlay" id="loginPopup" onclick="closePopup(event, 'loginPopup')">
+
+  <div class="popup-overlay" id="loginPopup">
     <div class="popup-box" onclick="event.stopPropagation()">
       <h2>Login</h2>
-      <input type="text" placeholder="Username" id="loginusername" />
-      <input type="password" placeholder="Password" id="loginpassword" />
-      <button id="submitlogin" class="btn">Submit</button>
+      <input type="text" placeholder="Username" id="loginusername">
+      <input type="password" placeholder="Password" id="loginpassword">
+      <button id="submitlogin">Submit</button>
     </div>
   </div>
 
-  <!-- Signup Popup -->.
-  <div class="popup-overlay" id="signupPopup" onclick="closePopup(event, 'signupPopup')">
+  <div class="popup-overlay" id="signupPopup">
     <div class="popup-box" onclick="event.stopPropagation()">
-      <h2>Sign Up</h2>
-      <input type="text" placeholder="Username" id="signupusername" />
-      <input type="password" placeholder="Password" id="signuppassword" />
-      <input type="password" placeholder="Confirm Password" id="signupconfirmpassword" />
-      <button id="submitsignup" class="btn">Submit</button>
+      <h2>Signup</h2>
+      <input type="text" placeholder="Username" id="signupusername">
+      <input type="password" placeholder="Password" id="signuppassword">
+      <input type="password" placeholder="Confirm Password" id="signupconfirmpassword">
+      <button id="submitsignup">Submit</button>
     </div>
   </div>
 
