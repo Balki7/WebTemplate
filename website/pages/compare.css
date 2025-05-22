@@ -1,5 +1,26 @@
 #logOutButton {
-    border: none;
     background: none;
-    cursor: pointer;
 }
+    body {
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .container {
+      display: flex;
+      gap: 340px;
+    }
+
+    table {
+      border: 2px solid black;
+      border-collapse: collapse;
+      width: 280px;
+      height: 500px;
+    }
+
+    td,
+    th {
+      border: 1px solid black;
+      padding: 10px;
+    }
