@@ -45,7 +45,7 @@
 #loginbutton:hover {
     background-color: white;
     color: cornflowerblue;
-    border: 1px solid blue;
+    border: 1px solid cornflowerblue;
     
 }
 
@@ -177,21 +177,6 @@ left: 650px;
 bottom: -295px;
 position: relative;
 }
-/* כפתור עגול */
-.info-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
 
 /* רקע חצי שקוף לפופאפ */
 .info-popup {
@@ -218,13 +203,33 @@ position: relative;
   direction: rtl;
 }
 
-/* כפתור סגירה */
 .close-btn {
   position: absolute;
   top: 15px;
   right: 20px;
   font-size: 24px;
   cursor: pointer;
+}
+
+.circle-btn{
+  width: 57px;
+  height: 57px;
+   position: fixed;
+  right: 50px;
+  bottom: 620px; 
+  border-radius: 50%;
+  background-color: cornflowerblue;
+  color: white;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.circle-btn:hover {
+      background-color: white;
+    color: cornflowerblue;
+    border: 1px solid cornflowerblue;
 }
 
 
