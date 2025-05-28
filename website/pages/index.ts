@@ -10,7 +10,6 @@ let signupusername = document.getElementById("signupusername") as HTMLInputEleme
 let loginusername = document.getElementById("loginusername") as HTMLInputElement;
 let loginpassword = document.getElementById("loginpassword") as HTMLInputElement;
 
-
 loginbutton.onclick = function () {
     const popup = document.getElementById("loginPopup");
     if (popup) popup.style.display = "flex";
