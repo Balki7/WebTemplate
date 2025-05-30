@@ -3,33 +3,58 @@
 
 <head>
   <meta charset="UTF-8">
-
+  <title>Compare Cars</title>
+  <link rel="stylesheet" href="compare.css">
 </head>
 
 <body>
-          <link rel="stylesheet" href="compare.css" />
-    <button id="logOutButton">log out</button>
+  <header class="header">
+    <h1>השוואת רכבים</h1>
+    <p>בחר והשווה בין רכבים לפי פרמטרים שונים:</p>
+  </header>
 
-  <div class="container">
-    <table>
-      <tr>
-        <td>Cell 1</td>
-      </tr>
-      <tr>
-        <td></td>
-      </tr>
-    </table>
+  <main class="compare-container">
+    <div class="car-selectors">
+      <select id="car1-select"></select>
+      <select id="car2-select"></select>
+      <button id="compare-btn">Compare</button>
+    </div>
 
-    <table>
-      <tr>
-        <td>Cell 1</td>
-      </tr>
-      <tr>
-        <td></td>
-      </tr>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>רכב 1</th>
+          <th>רכב 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>דגם</td>
+          <td id="car1-model"></td>
+          <td id="car2-model"></td>
+        </tr>
+        <tr>
+          <td>שנה</td>
+          <td id="car1-year"></td>
+          <td id="car2-year"></td>
+        </tr>
+        <tr>
+          <td>מחירון</td>
+          <td id="car1-price"></td>
+          <td id="car2-price"></td>
+        </tr>
+        <tr>
+          <td>כוח סוס</td>
+          <td id="car1-hp"></td>
+          <td id="car2-hp"></td>
+        </tr>
+      </tbody>
     </table>
-  </div>
+  </main>
+
+
+  <script src="compare.js" type="module"></script>
 </body>
 
 </html>
-    <script src="compare.js" type="module"></script>

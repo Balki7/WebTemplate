@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -10,16 +10,18 @@
 
 <body>
   <header class="header">
-    <h1 class="title">🚗 Car Catalog</h1>
+    <h1 class="title"> Car Catalog 🚗</h1>
     <div class="buttons">
-      <button id="loginbutton" class="btn">Login</button>
-      <button id="signupbutton" class="btn btn-secondary">Sign Up</button>
+      <button id="loginbutton" class="btn">Login🔓</button>
+      <button id="signupbutton" class="btn btn-secondary">Sign Up📝</button>
     </div>
   </header>
+      <p class="subtitle">Log in now to start comparing cars</p>
 
-   <div class="welcome-text">Welcome! Please choose an option below:</div>
-   <div id="ql"> Already have an account?</div>
-   <div id="qs">Don't have an account?</div>
+   <div id="q1"> Already have an account?</div>
+   <div id="q2">Don't have an account?</div>
+
+ <button id="infobutton">❓</button>
 
   <div class="popup-overlay" id="loginPopup">
     <div class="popup-box" onclick="event.stopPropagation()">
@@ -29,7 +31,6 @@
       <button id="submitlogin">Submit</button>
     </div>
   </div>
-  <button class="circle-btn">!</button>
 
   <div class="popup-overlay" id="signupPopup">
     <div class="popup-box" onclick="event.stopPropagation()">
@@ -39,9 +40,12 @@
       <input type="password" placeholder="Confirm Password" id="signupconfirmpassword">
       <button id="submitsignup">Submit</button>
     </div>
-  </div>
+
 
   <script src="index.js" type="module"></script>
 </body>
 
 </html>
+         <!-- <link rel="stylesheet" href="compare.css" />
+    <button id="logOutButton">log out</button>
+    <script src="compare.js" type="module"></script>

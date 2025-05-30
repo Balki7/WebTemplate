@@ -10,6 +10,7 @@ let signupusername = document.getElementById("signupusername") as HTMLInputEleme
 let loginusername = document.getElementById("loginusername") as HTMLInputElement;
 let loginpassword = document.getElementById("loginpassword") as HTMLInputElement;
 
+
 loginbutton.onclick = function () {
     const popup = document.getElementById("loginPopup");
     if (popup) popup.style.display = "flex";
@@ -109,3 +110,23 @@ submitlogin.onclick = async function () {
 
     location.href = "compare.html";
 };
+
+loginpassword.addEventListener("keydown", function (event: KeyboardEvent) {
+    if (event.key === "Enter") {
+        submitlogin.click();
+    }
+});
+
+signuppassword.addEventListener("keydown", function (event: KeyboardEvent) {
+    if (event.key === "Enter") {
+        submitsignup.click();
+    }
+});
+
+signupconfirmpassword.addEventListener("keydown", function (event: KeyboardEvent) {
+    if (event.key === "Enter") {
+        submitsignup.click();
+    }
+});
+
+
