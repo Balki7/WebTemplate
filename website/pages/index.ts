@@ -10,6 +10,14 @@ let signupusername = document.getElementById("signupusername") as HTMLInputEleme
 let loginusername = document.getElementById("loginusername") as HTMLInputElement;
 let loginpassword = document.getElementById("loginpassword") as HTMLInputElement;
 
+const whyusBtn = document.getElementById("whyus-btn") as HTMLButtonElement;
+const whyusOverlay = document.getElementById("whyus-overlay") as HTMLDivElement;
+const whyusClose = document.getElementById("whyus-close") as HTMLButtonElement;
+
+const infoBtn = document.getElementById("infobutton") as HTMLButtonElement;
+const infoboxOverlay = document.getElementById("infobox-overlay") as HTMLDivElement;
+const infoboxClose = document.getElementById("infobox-close") as HTMLButtonElement;
+
 
 loginbutton.onclick = function () {
     const popup = document.getElementById("loginPopup");
@@ -128,5 +136,35 @@ signupconfirmpassword.addEventListener("keydown", function (event: KeyboardEvent
         submitsignup.click();
     }
 });
+
+
+whyusBtn.addEventListener("click", () => {
+  whyusOverlay.classList.add("show");
+});
+
+whyusOverlay.addEventListener("click", () => {
+  whyusOverlay.classList.remove("show");
+});
+
+whyusClose.addEventListener("click", (e: MouseEvent) => {
+  e.stopPropagation();
+  whyusOverlay.classList.remove("show");
+});
+
+
+
+infoBtn.addEventListener('click', () => {
+  infoboxOverlay.classList.add('show');
+});
+
+infoboxOverlay.addEventListener('click', () => {
+  infoboxOverlay.classList.remove('show');
+});
+
+infoboxClose.addEventListener('click', (e: MouseEvent) => {
+  e.stopPropagation();
+  infoboxOverlay.classList.remove('show');
+});
+
 
 
