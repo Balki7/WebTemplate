@@ -192,14 +192,12 @@ padding: 18px 25px;
   background-color: #005fa3;
 }
 
-/* Show popup */
 .popup-overlay.show {
-  display: flex !important;
-  animation: fadeIn 0.3s ease-in-out;
+  display: flex;
+  animation: 0.3s ease-in-out;
 }
 
 
-/* Responsive */
 @media screen and (max-width: 768px) {
   .title {
     font-size: 2.5rem;
@@ -217,7 +215,7 @@ padding: 18px 25px;
 #whyus-btn {
   margin-top: 67px;
     position: absolute;
-  right: 605px;
+  right: 633px;
   text-align: center;
   padding: 12px 24px;
   background-color: #ff9800;
@@ -295,9 +293,3 @@ padding: 18px 25px;
 #whyus-overlay.show {
   display: flex;
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-

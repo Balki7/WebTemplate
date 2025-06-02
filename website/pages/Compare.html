@@ -2,57 +2,68 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Compare Cars</title>
-  <link rel="stylesheet" href="compare.css">
+  <link rel="stylesheet" href="compare.css" />
 </head>
 
 <body>
-  <header class="header">
-    <h1>השוואת רכבים</h1>
-    <p>בחר והשווה בין רכבים לפי פרמטרים שונים:</p>
-  </header>
 
-  <main class="compare-container">
-    <div class="car-selectors">
-      <select id="car1-select"></select>
-      <select id="car2-select"></select>
-      <button id="compare-btn">Compare</button>
+  <div id="title">Compare Cars</div>
+
+  <div class="compare-wrapper">
+    <!-- Car 1 -->
+    <div class="car-box">
+      <h3>Car 1</h3>
+      <label for="salectcar1">Select Car</label>
+      <select id="salectcar1">
+        <option>------------------------------------------------</option>
+        <option>lamborgini</option>
+        <option>hacadilak shel aba</option>
+        <option>kia</option>
+        <option>mizubishi</option>
+      </select>
+
+      <label for="textarea1">Model</label>
+      <textarea id="textarea1"></textarea>
+
+      <label for="textarea3">Price</label>
+      <textarea id="textarea3"></textarea>
+
+      <label for="textarea5">Year</label>
+      <textarea id="textarea5"></textarea>
+
+      <label for="textarea7">Engine</label>
+      <textarea id="textarea7"></textarea>
     </div>
 
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>רכב 1</th>
-          <th>רכב 2</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>דגם</td>
-          <td id="car1-model"></td>
-          <td id="car2-model"></td>
-        </tr>
-        <tr>
-          <td>שנה</td>
-          <td id="car1-year"></td>
-          <td id="car2-year"></td>
-        </tr>
-        <tr>
-          <td>מחירון</td>
-          <td id="car1-price"></td>
-          <td id="car2-price"></td>
-        </tr>
-        <tr>
-          <td>כוח סוס</td>
-          <td id="car1-hp"></td>
-          <td id="car2-hp"></td>
-        </tr>
-      </tbody>
-    </table>
-  </main>
+    <!-- Car 2 -->
+    <div class="car-box">
+      <h3>Car 2</h3>
+      <label for="salectcar2">Select Car</label>
+      <select id="salectcar2">
+        <option>------------------------------------------------</option>
+        <option>lamborgini</option>
+        <option>hacadilak shel aba</option>
+        <option>kia</option>
+        <option>mizubishi</option>
+      </select>
 
+      <label for="textarea2">Model</label>
+      <textarea id="textarea2"></textarea>
+
+      <label for="textarea4">Price</label>
+      <textarea id="textarea4"></textarea>
+
+      <label for="textarea6">Year</label>
+      <textarea id="textarea6"></textarea>
+
+      <label for="textarea8">Engine</label>
+      <textarea id="textarea8"></textarea>
+    </div>
+  </div>
+
+  <button id="comparebutton">Compare</button>
 
   <script src="compare.js" type="module"></script>
 </body>
