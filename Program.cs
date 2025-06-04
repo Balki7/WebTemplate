@@ -1,13 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Dynamic;
 using Microsoft.EntityFrameworkCore;
 
 class Program
 {
   static void Main()
   {
-    int port = 5001;
+    int port = 5000;
 
     var server = new Server(port);
 
@@ -40,19 +38,15 @@ class Program
           if (request.Path == "verifyUserId")
           {
             var userId = request.GetBody<string>();
-
             var exists = database.Users.Any(user => user.Id == userId);
-
             response.Send(exists);
           }
           else if (request.Path == "signUp")
           {
             var (username, password) = request.GetBody<(string, string)>();
-
             var exists = database.Users.Any(user => user.Username == username);
 
             string? userId = null;
-
             if (!exists)
             {
               userId = Guid.NewGuid().ToString();
@@ -65,13 +59,70 @@ class Program
           else if (request.Path == "logIn")
           {
             var (username, password) = request.GetBody<(string, string)>();
-
             var user = database.Users
               .FirstOrDefault(user => user.Username == username && user.Password == password);
-
             response.Send(user?.Id);
           }
-          response.SetStatusCode(405);
+          else if (request.Path == "addcar")
+          {
+            var body = request.GetBody<Dictionary<string, object>>();
+
+            if (!body.TryGetValue("userId", out var userIdObj) || userIdObj == null)
+            {
+              response.SetStatusCode(401);
+              response.Send("Missing user ID.");
+            }
+            else
+            {
+              var userId = userIdObj.ToString() ?? "";
+
+              var car = new Car
+              {
+                Id = Guid.NewGuid().ToString(),
+                UserId = userId,
+                name = body["name"]?.ToString() ?? "",
+                model = body["model"]?.ToString() ?? "",
+                price = int.TryParse(body["price"]?.ToString(), out var p) ? p : 0,
+                year = int.TryParse(body["year"]?.ToString(), out var y) ? y : 0,
+                engine = body["engine"]?.ToString() ?? ""
+              };
+
+              database.cars.Add(car);
+              response.Send(new { success = true });
+            }
+          }
+          else if (request.Path == "getcars")
+          {
+            var body = request.GetBody<Dictionary<string, object>>();
+
+            if (!body.TryGetValue("userId", out var userIdObj) || userIdObj == null)
+            {
+              response.SetStatusCode(401);
+              response.Send("Missing user ID.");
+            }
+            else
+            {
+              var userId = userIdObj.ToString() ?? "";
+
+              var userCars = database.cars
+                .Where(car => car.UserId == userId)
+                .Select(car => new
+                {
+                  car.name,
+                  car.model,
+                  car.price,
+                  car.year,
+                  car.engine
+                })
+                .ToList();
+
+              response.Send(new { cars = userCars });
+            }
+          }
+          else
+          {
+            response.SetStatusCode(405);
+          }
 
           database.SaveChanges();
         }
@@ -85,7 +136,6 @@ class Program
     }
   }
 }
-
 
 class Database() : DbBase("database")
 {
@@ -102,9 +152,11 @@ class User(string id, string username, string password)
 
 class Car
 {
+  [Key] public string Id { get; set; } = "";
+  public string UserId { get; set; } = "";
+  public string name { get; set; } = "";
   public string model { get; set; } = "";
   public int price { get; set; }
   public int year { get; set; }
   public string engine { get; set; } = "";
-
 }

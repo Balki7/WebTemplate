@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <button id="logOutButton">log out</button>
+  <button id="logOutButton">log out</button>
 
 
   <div id="title">Compare Cars</div>
@@ -19,8 +19,9 @@
       <h3>Car 1</h3>
       <label for="selectcar1">Select Car</label>
       <select id="selectcar1">
-        <option id="lamborgini">lamborgini</option>
-        <option id="cadilac">cadilac</option>
+        <option>-------------------------------------------------------</option>
+        <option>lamborgini</option>
+        <option>cadilac</option>
         <option>kia</option>
         <option>mizubishi</option>
       </select>
@@ -42,27 +43,56 @@
       <h3>Car 2</h3>
       <label for="selectcar2">Select Car</label>
       <select id="selectcar2">
+        <option>------------------------------------------------------</option>
         <option>lamborgini</option>
-        <option>hacadilak shel aba</option>
+        <option>cadilac</option>
         <option>kia</option>
         <option>mizubishi</option>
       </select>
 
       <label for="div2">Model</label>
-      <div id="div2">aventador</div>
+      <div id="div2"></div>
 
       <label for="div4">Price</label>
-      <div id="div4">2,500,000$</div>
+      <div id="div4"></div>
 
       <label for="div6">Year</label>
-      <div id="div6">2023</div>
+      <div id="div6"></div>
 
       <label for="div8">Engine</label>
-      <div id="div8">V12</div>
+      <div id="div8"></div>
     </div>
   </div>
 
   <button id="comparebutton">Compare</button>
+  <button id="addCarButton">+ Add Car</button>
+
+  <!-- Add this inside your <body>, maybe near the end -->
+
+  <div id="addCarPopup" style="display:none; position:fixed; top:50%; left:50%; transform: translate(-50%, -50%);
+  background:white; padding:20px; border:2px solid black; z-index:1000;">
+    <h3>Add Your Car</h3>
+
+    <label for="inputName">Name:</label><br />
+    <input id="inputName" type="text" /><br /><br />
+
+    <label for="inputModel">Model:</label><br />
+    <input id="inputModel" type="text" /><br /><br />
+
+    <label for="inputPrice">Price:</label><br />
+    <input id="inputPrice" type="number" /><br /><br />
+
+    <label for="inputYear">Year:</label><br />
+    <input id="inputYear" type="number" /><br /><br />
+
+    <label for="inputEngine">Engine:</label><br />
+    <input id="inputEngine" type="text" /><br /><br />
+
+    <button id="addCarSubmit">Add Car</button>
+    <button id="addCarCancel">Cancel</button>
+  </div>
+
+
 
   <script src="compare.js" type="module"></script>
 </body>
