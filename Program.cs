@@ -90,6 +90,7 @@ class Program
 class Database() : DbBase("database")
 {
   public DbSet<User> Users { get; set; } = default!;
+  public DbSet<Car> cars { get; set; } = default!;
 }
 
 class User(string id, string username, string password)
@@ -97,4 +98,13 @@ class User(string id, string username, string password)
   [Key] public string Id { get; set; } = id;
   public string Username { get; set; } = username;
   public string Password { get; set; } = password;
+}
+
+class Car
+{
+  public string model { get; set; } = "";
+  public int price { get; set; }
+  public int year { get; set; }
+  public string engine { get; set; } = "";
+
 }
