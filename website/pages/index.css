@@ -270,7 +270,6 @@ padding: 18px 25px;
   padding-left: 8px;
 }
 
-/* כפתור סגירה */
 #whyus-close {
   margin-top: 20px;
   width: 100%;
@@ -288,8 +287,6 @@ padding: 18px 25px;
   color: #ff9800;
   border: 2px solid #ff9800;
 }
-
-/* הצגת פופאפ */
 #whyus-overlay.show {
   display: flex;
 }

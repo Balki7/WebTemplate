@@ -26,23 +26,22 @@ const carData: Record<string, { model: string; price: string; year: string; engi
         model: "Escalade",
         price: "85,000$",
         year: "2022",
-        engine: "8"
+        engine: "V8"
     },
     kia: {
         model: "Sportage",
         price: "30,000$",
         year: "2021",
-        engine: "4"
+        engine: "2.0"
     },
     mizubishi: {
         model: "Outlander",
         price: "28,000$",
-        year: "2021",
-        engine: "4"
+        year: "2022",
+        engine: "2.5"
     }
 };
 
-// Reset color styles and update divs when cars are changed
 function updateComparison() {
     [div1, div2, div3, div4, div5, div6, div7, div8].forEach(div => {
         div.style.color = "";
@@ -79,9 +78,9 @@ selectcar2.onchange = function () {
 const compareButton = document.getElementById("comparebutton") as HTMLButtonElement;
 
 compareButton.onclick = function () {
-    compareValues("div3", "div4", true);  // Price (lower is better)
-    compareValues("div5", "div6", false); // Year (higher is better)
-    compareValues("div7", "div8", false); // Engine (bigger is better)
+    compareValues("div3", "div4", true);
+    compareValues("div5", "div6", false);
+    compareValues("div7", "div8", false);
 };
 
 function compareValues(id1: string, id2: string, lowerIsBetter: boolean) {
@@ -112,7 +111,6 @@ function parseValue(text: string): number {
     return isNaN(parsed) ? 0 : parsed;
 }
 
-// ------------------- Add Car Popup -------------------
 
 const addCarButton = document.getElementById("addCarButton")!;
 const popup = document.getElementById("carPopup")!;
