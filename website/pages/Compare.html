@@ -65,32 +65,22 @@
   </div>
 
   <button id="comparebutton">Compare</button>
+
+
   <button id="addCarButton">+ Add Car</button>
-
-  <!-- Add this inside your <body>, maybe near the end -->
-
-  <div id="addCarPopup" style="display:none; position:fixed; top:50%; left:50%; transform: translate(-50%, -50%);
-  background:white; padding:20px; border:2px solid black; z-index:1000;">
-    <h3>Add Your Car</h3>
-
-    <label for="inputName">Name:</label><br />
-    <input id="inputName" type="text" /><br /><br />
-
-    <label for="inputModel">Model:</label><br />
-    <input id="inputModel" type="text" /><br /><br />
-
-    <label for="inputPrice">Price:</label><br />
-    <input id="inputPrice" type="number" /><br /><br />
-
-    <label for="inputYear">Year:</label><br />
-    <input id="inputYear" type="number" /><br /><br />
-
-    <label for="inputEngine">Engine:</label><br />
-    <input id="inputEngine" type="text" /><br /><br />
-
-    <button id="addCarSubmit">Add Car</button>
-    <button id="addCarCancel">Cancel</button>
+  <div id="carPopup" class="popup hidden">
+    <div class="popup-content">
+      <h3>Add Your Own Car</h3>
+      <input type="text" id="inputCarName" placeholder="Car name" />
+      <input type="text" id="inputModel" placeholder="Model" />
+      <input type="number" id="inputPrice" placeholder="Price" />
+      <input type="number" id="inputYear" placeholder="Year" />
+      <input type="text" id="inputEngine" placeholder="Engine" />
+      <button id="submitCarButton">Add Car</button>
+      <button id="closePopupButton">Cancel</button>
+    </div>
   </div>
+
 
 
 

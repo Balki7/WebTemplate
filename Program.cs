@@ -18,7 +18,7 @@ class Program
     {
       (var request, var response) = server.WaitForRequest();
 
-      Console.WriteLine($"Recieved a request with the path: {request.Path}");
+      Console.WriteLine($"Received a request with the path: {request.Path}");
 
       if (File.Exists(request.Path))
       {
@@ -60,7 +60,7 @@ class Program
           {
             var (username, password) = request.GetBody<(string, string)>();
             var user = database.Users
-              .FirstOrDefault(user => user.Username == username && user.Password == password);
+                .FirstOrDefault(user => user.Username == username && user.Password == password);
             response.Send(user?.Id);
           }
           else if (request.Path == "addcar")
@@ -87,7 +87,7 @@ class Program
                 engine = body["engine"]?.ToString() ?? ""
               };
 
-              database.cars.Add(car);
+              database.Cars.Add(car);
               response.Send(new { success = true });
             }
           }
@@ -104,17 +104,17 @@ class Program
             {
               var userId = userIdObj.ToString() ?? "";
 
-              var userCars = database.cars
-                .Where(car => car.UserId == userId)
-                .Select(car => new
-                {
-                  car.name,
-                  car.model,
-                  car.price,
-                  car.year,
-                  car.engine
-                })
-                .ToList();
+              var userCars = database.Cars
+                  .Where(car => car.UserId == userId)
+                  .Select(car => new
+                  {
+                    car.name,
+                    car.model,
+                    car.price,
+                    car.year,
+                    car.engine
+                  })
+                  .ToList();
 
               response.Send(new { cars = userCars });
             }
@@ -140,7 +140,7 @@ class Program
 class Database() : DbBase("database")
 {
   public DbSet<User> Users { get; set; } = default!;
-  public DbSet<Car> cars { get; set; } = default!;
+  public DbSet<Car> Cars { get; set; } = default!;
 }
 
 class User(string id, string username, string password)
