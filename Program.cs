@@ -133,6 +133,12 @@ class Program
                 .ToList();
             response.Send(new { cars = allCars });
           }
+          else if (request.Path == "getusername")
+          {
+            var userId = request.GetBody<string>();
+            var user = database.Users.FirstOrDefault(u => u.Id == userId);
+            response.Send(new { username = user?.Username });
+          }
           else
           {
             response.SetStatusCode(405);

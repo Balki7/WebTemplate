@@ -197,3 +197,17 @@ async function loadAllCars() {
 }
 
 loadAllCars();
+
+async function showWelcomeUser() {
+    const userId = localStorage.getItem("userId");
+    if (!userId) return;
+    const response = await send("getusername", userId);
+    if (response && response.username) {
+        const welcomeDiv = document.getElementById("welcomeUser");
+        if (welcomeDiv) {
+            welcomeDiv.textContent = `Welcome ${response.username}!`;
+        }
+    }
+}
+
+showWelcomeUser();
