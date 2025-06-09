@@ -15,30 +15,30 @@ const div8 = document.getElementById("div8")!;
 let currentCar1 = selectcar1.value;
 let currentCar2 = selectcar2.value;
 
-const carData: Record<string, { model: string; price: string; year: string; engine: string }> = {
-    lamborgini: {
+const carData: Record<string, { model: string; price: string; year: string; Horsepower: string }> = {
+    Lamborgini: {
         model: "Aventador",
         price: "2,500,000$",
         year: "2023",
-        engine: "12"
+        Horsepower: "770"
     },
-    cadilac: {
-        model: "Escalade",
+    Cadilac: {
+        model: "ATS-V",
         price: "85,000$",
         year: "2022",
-        engine: "V8"
+        Horsepower: "564"
     },
     kia: {
         model: "Sportage",
         price: "30,000$",
         year: "2021",
-        engine: "2.0"
+        Horsepower: "150"
     },
-    mizubishi: {
+    Mizubishi: {
         model: "Outlander",
         price: "28,000$",
         year: "2022",
-        engine: "2.5"
+        Horsepower: "210"
     }
 };
 
@@ -54,14 +54,14 @@ function updateComparison() {
         div1.textContent = car1.model;
         div3.textContent = car1.price;
         div5.textContent = car1.year;
-        div7.textContent = car1.engine;
+        div7.textContent = car1.Horsepower;
     }
 
     if (car2) {
         div2.textContent = car2.model;
         div4.textContent = car2.price;
         div6.textContent = car2.year;
-        div8.textContent = car2.engine;
+        div8.textContent = car2.Horsepower;
     }
 }
 
@@ -131,9 +131,9 @@ submitCarButton.onclick = async () => {
     const model = (document.getElementById("inputModel") as HTMLInputElement).value.trim();
     const price = parseInt((document.getElementById("inputPrice") as HTMLInputElement).value);
     const year = parseInt((document.getElementById("inputYear") as HTMLInputElement).value);
-    const engine = (document.getElementById("inputEngine") as HTMLInputElement).value.trim();
+    const Horsepower = (document.getElementById("inputEngine") as HTMLInputElement).value.trim();
 
-    if (!name || !model || !engine || isNaN(price) || isNaN(year)) {
+    if (!name || !model || !Horsepower || isNaN(price) || isNaN(year)) {
         alert("Fill in all fields correctly.");
         return;
     }
@@ -144,7 +144,7 @@ submitCarButton.onclick = async () => {
         model,
         price,
         year,
-        engine
+        Horsepower
     });
 
     if (response.success) {
@@ -158,7 +158,7 @@ submitCarButton.onclick = async () => {
         option2.textContent = name;
         selectcar2.appendChild(option2);
 
-        carData[name.toLowerCase()] = { model, price: price + "$", year: year.toString(), engine };
+        carData[name.toLowerCase()] = { model, price: price + "$", year: year.toString(), Horsepower };
         popup.classList.add("hidden");
     } else {
         alert("Failed to add car.");

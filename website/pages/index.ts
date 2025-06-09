@@ -164,7 +164,4 @@ infoboxOverlay.addEventListener('click', () => {
 infoboxClose.addEventListener('click', (e: MouseEvent) => {
   e.stopPropagation();
   infoboxOverlay.classList.remove('show');
-});
-
-
-
+}); 
