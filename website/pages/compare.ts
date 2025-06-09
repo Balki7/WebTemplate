@@ -16,13 +16,13 @@ let currentCar1 = selectcar1.value;
 let currentCar2 = selectcar2.value;
 
 const carData: Record<string, { model: string; price: string; year: string; Horsepower: string }> = {
-    Lamborgini: {
+    lamborgini: {
         model: "Aventador",
         price: "2,500,000$",
         year: "2023",
         Horsepower: "770"
     },
-    Cadilac: {
+    cadilac: {
         model: "ATS-V",
         price: "85,000$",
         year: "2022",
@@ -34,7 +34,7 @@ const carData: Record<string, { model: string; price: string; year: string; Hors
         year: "2021",
         Horsepower: "150"
     },
-    Mizubishi: {
+    mizubishi: {
         model: "Outlander",
         price: "28,000$",
         year: "2022",
@@ -144,7 +144,7 @@ submitCarButton.onclick = async () => {
         model,
         price,
         year,
-        Horsepower
+        Horsepower,
     });
 
     if (response.success) {
