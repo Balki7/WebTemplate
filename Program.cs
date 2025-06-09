@@ -119,6 +119,20 @@ class Program
               response.Send(new { cars = userCars });
             }
           }
+          else if (request.Path == "getallcars")
+          {
+            var allCars = database.Cars
+                .Select(car => new
+                {
+                  car.name,
+                  car.model,
+                  car.price,
+                  car.year,
+                  car.Horsepower
+                })
+                .ToList();
+            response.Send(new { cars = allCars });
+          }
           else
           {
             response.SetStatusCode(405);

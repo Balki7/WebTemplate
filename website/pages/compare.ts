@@ -169,3 +169,31 @@ logOutButton.onclick = async function (): Promise<void> {
     localStorage.removeItem("userId");
     location.href = "index.html";
 };
+
+async function loadAllCars() {
+    const response = await send("getallcars", {});
+    if (response && response.cars) {
+        for (const car of response.cars) {
+            // Avoid duplicates if already present
+            if (!carData[car.name.toLowerCase()]) {
+                const option1 = document.createElement("option");
+                option1.value = car.name;
+                option1.textContent = car.name;
+                selectcar1.appendChild(option1);
+
+                const option2 = document.createElement("option");
+                option2.value = car.name;
+                option2.textContent = car.name;
+                selectcar2.appendChild(option2);
+            }
+            carData[car.name.toLowerCase()] = {
+                model: car.model,
+                price: car.price + "$",
+                year: car.year.toString(),
+                Horsepower: car.Horsepower
+            };
+        }
+    }
+}
+
+loadAllCars();
