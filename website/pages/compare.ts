@@ -131,7 +131,7 @@ submitCarButton.onclick = async () => {
     const model = (document.getElementById("inputModel") as HTMLInputElement).value.trim();
     const price = parseInt((document.getElementById("inputPrice") as HTMLInputElement).value);
     const year = parseInt((document.getElementById("inputYear") as HTMLInputElement).value);
-    const Horsepower = (document.getElementById("inputEngine") as HTMLInputElement).value.trim();
+    const Horsepower = (document.getElementById("inputHorsepower") as HTMLInputElement).value.trim();
 
     if (!name || !model || !Horsepower || isNaN(price) || isNaN(year)) {
         alert("Fill in all fields correctly.");

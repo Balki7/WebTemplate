@@ -84,7 +84,7 @@ class Program
                 model = body["model"]?.ToString() ?? "",
                 price = int.TryParse(body["price"]?.ToString(), out var p) ? p : 0,
                 year = int.TryParse(body["year"]?.ToString(), out var y) ? y : 0,
-                engine = body["engine"]?.ToString() ?? ""
+                Horsepower = body["Horsepower"]?.ToString() ?? ""
               };
 
               database.Cars.Add(car);
@@ -112,7 +112,7 @@ class Program
                     car.model,
                     car.price,
                     car.year,
-                    car.engine
+                    car.Horsepower
                   })
                   .ToList();
 
@@ -158,5 +158,5 @@ class Car
   public string model { get; set; } = "";
   public int price { get; set; }
   public int year { get; set; }
-  public string engine { get; set; } = "";
+  public string Horsepower { get; set; } = "";
 }
