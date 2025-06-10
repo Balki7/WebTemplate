@@ -212,3 +212,19 @@ select {
     transform: scale(1);
   }
 }
+
+.compared {
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 4px;
+  transition: border-color 0.2s ease;
+}
+
+.winner {
+  border-color: green;
+  color: green;
+}
+
+.equal {
+  border-color: gray;
+}

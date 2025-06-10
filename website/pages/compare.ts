@@ -90,20 +90,25 @@ function compareValues(id1: string, id2: string, lowerIsBetter: boolean) {
     const val1 = parseValue(el1.textContent || "");
     const val2 = parseValue(el2.textContent || "");
 
-    el1.style.color = "";
-    el2.style.color = "";
+    // Reset previous styles
+    el1.classList.remove("winner", "equal");
+    el2.classList.remove("winner", "equal");
+
+    el1.classList.add("compared");
+    el2.classList.add("compared");
 
     if (val1 === val2) {
-        el1.style.color = "gray";
-        el2.style.color = "gray";
+        el1.classList.add("equal");
+        el2.classList.add("equal");
     } else if ((val1 < val2) === lowerIsBetter) {
-        el1.style.color = "green";
+        el1.classList.add("winner");
         el2.style.color = "red";
     } else {
+        el2.classList.add("winner");
         el1.style.color = "red";
-        el2.style.color = "green";
     }
 }
+
 
 function parseValue(text: string): number {
     const cleaned = text.replace(/[^\d.]/g, "");
@@ -168,4 +173,31 @@ let logOutButton = document.getElementById("logOutButton") as HTMLButtonElement;
 logOutButton.onclick = async function (): Promise<void> {
     localStorage.removeItem("userId");
     location.href = "index.html";
+};
+window.onload = async () => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) return;
+
+    const response = await send("getcars", { userId });
+    if (!response?.cars) return;
+
+    for (const car of response.cars) {
+        const name = car.name;
+        carData[name.toLowerCase()] = {
+            model: car.model,
+            price: car.price + "$",
+            year: car.year.toString(),
+            Horsepower: car.Horsepower
+        };
+
+        const option1 = document.createElement("option");
+        option1.value = name;
+        option1.textContent = name;
+        selectcar1.appendChild(option1);
+
+        const option2 = document.createElement("option");
+        option2.value = name;
+        option2.textContent = name;
+        selectcar2.appendChild(option2);
+    }
 };
