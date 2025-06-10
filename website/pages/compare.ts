@@ -1,4 +1,17 @@
 import { send } from "../utilities";
+async function saveComparisonToHistory(winner: string, categories: Record<string, string>) {
+    const userId = localStorage.getItem("userId");
+    if (!userId) return;
+
+    await send("saveComparison", {
+        userId,
+        leftCar: currentCar1,
+        rightCar: currentCar2,
+        winner,
+        categoriesJson: JSON.stringify(categories),
+    });
+}
+
 
 const selectcar1 = document.getElementById("selectcar1") as HTMLSelectElement;
 const selectcar2 = document.getElementById("selectcar2") as HTMLSelectElement;
@@ -80,10 +93,32 @@ selectcar2.onchange = function () {
 const compareButton = document.getElementById("comparebutton") as HTMLButtonElement;
 
 compareButton.onclick = function () {
-    compareValues("div3", "div4", true);
-    compareValues("div5", "div6", false);
-    compareValues("div7", "div8", false);
+    const categoryResults: Record<string, string> = {};
+
+    const results = [
+        ["div3", "div4", true, "price"],
+        ["div5", "div6", false, "year"],
+        ["div7", "div8", false, "horsepower"]
+    ];
+
+    for (const [id1, id2, lowerIsBetter, label] of results) {
+        const outcome = compareValues(id1 as string, id2 as string, lowerIsBetter as boolean);
+        categoryResults[label as string] = outcome;
+    }
+
+    // Determine the winner
+    let winner: string = "tie";
+    const score = { [currentCar1]: 0, [currentCar2]: 0 };
+    for (const result of Object.values(categoryResults)) {
+        if (result === "left") score[currentCar1]++;
+        else if (result === "right") score[currentCar2]++;
+    }
+    if (score[currentCar1] > score[currentCar2]) winner = currentCar1;
+    else if (score[currentCar2] > score[currentCar1]) winner = currentCar2;
+
+    saveComparisonToHistory(winner, categoryResults);
 };
+
 function resetAllCompareStyles() {
     document.querySelectorAll(".winner, .equal, .compared").forEach(el => {
         el.classList.remove("winner", "equal", "compared");
@@ -91,13 +126,12 @@ function resetAllCompareStyles() {
     });
 }
 
-function compareValues(id1: string, id2: string, lowerIsBetter: boolean) {
+function compareValues(id1: string, id2: string, lowerIsBetter: boolean): "left" | "right" | "equal" {
     const el1 = document.getElementById(id1)!;
     const el2 = document.getElementById(id2)!;
 
     const val1 = parseValue(el1.textContent || "");
     const val2 = parseValue(el2.textContent || "");
-
 
     el1.classList.remove("winner", "equal");
     el2.classList.remove("winner", "equal");
@@ -108,14 +142,18 @@ function compareValues(id1: string, id2: string, lowerIsBetter: boolean) {
     if (val1 === val2) {
         el1.classList.add("equal");
         el2.classList.add("equal");
+        return "equal";
     } else if ((val1 < val2) === lowerIsBetter) {
         el1.classList.add("winner");
         el2.style.color = "red";
+        return "left";
     } else {
         el2.classList.add("winner");
         el1.style.color = "red";
+        return "right";
     }
 }
+
 
 
 function parseValue(text: string): number {

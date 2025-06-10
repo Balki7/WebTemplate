@@ -11,62 +11,68 @@
     <p class="subtitle">Compare your dream cars, all in one place</p>
   </header>
 
-  <main class="main-content">
-    <div class="action-area">
-      <button id="loginbutton" class="btn">🔓 Login</button>
-      <span class="login q">Already have an account?</span>
-      <button id="signupbutton" class="btn btn-secondary">📝 Sign Up</button>
-      <span class="sign">Don't have an account yet?</span>
+  <!-- Page body that has the background image -->
+  <div class="page-body">
+    <main class="main-content">
+      <div class="action-area">
+        <button id="loginbutton" class="btn">🔓 Login</button>
+        <span class="login q">Already have an account?</span>
+        <button id="signupbutton" class="btn btn-secondary">📝 Sign Up</button>
+        <span class="sign">Don't have an account yet?</span>
+      </div>
+    </main>
+
+    <!-- Floating help button -->
+    <button id="infobutton" title="Need Help?">❓</button>
+
+    <!-- Info popup -->
+    <div id="infobox-overlay">
+      <div id="infobox-popup" onclick="event.stopPropagation()">
+        <h2>Welcome to Car Catalog!</h2>
+        <p>Car Catalog is your ultimate tool for comparing cars side-by-side with ease and clarity.
+          Whether you're looking for your first car or upgrading to your dream ride – we're here to help.</p>
+        <p>Ready to get started? Sign up or log in above to begin comparing!</p>
+        <button id="infobox-close">Close</button>
+      </div>
     </div>
-  </main>
 
+    <!-- Login popup -->
+    <div class="popup-overlay" id="loginPopup">
+      <div class="popup-box" onclick="event.stopPropagation()">
+        <h2>Login</h2>
+        <input type="text" placeholder="Username" id="loginusername" />
+        <input type="password" placeholder="Password" id="loginpassword" />
+        <button id="submitlogin">Confirm</button>
+      </div>
+    </div>
 
-<button id="infobutton" title="Need Help?">❓</button>
-<div id="infobox-overlay">
-  <div id="infobox-popup" onclick="event.stopPropagation()">
-    <h2>Welcome to Car Catalog!</h2>
-    <p>Car Catalog is your ultimate tool for comparing cars side-by-side with ease and clarity.
-    Whether you're looking for your first car or upgrading to your dream ride – we're here to help.</p>
-      <p>Ready to get started? Sign up or log in above to begin comparing!</p>
-    <button id="infobox-close">Close</button>
-  </div>
-</div>
+    <!-- Signup popup -->
+    <div class="popup-overlay" id="signupPopup">
+      <div class="popup-box" onclick="event.stopPropagation()">
+        <h2>Sign Up</h2>
+        <input type="text" placeholder="Username" id="signupusername" />
+        <input type="password" placeholder="Password" id="signuppassword" />
+        <input type="password" placeholder="Confirm Password" id="signupconfirmpassword" />
+        <button id="submitsignup">Register</button>
+      </div>
+    </div>
+    
 
-
-
-  <div class="popup-overlay" id="loginPopup">
-    <div class="popup-box" onclick="event.stopPropagation()">
-      <h2>Login</h2>
-      <input type="text" placeholder="Username" id="loginusername" />
-      <input type="password" placeholder="Password" id="loginpassword" />
-      <button id="submitlogin">Confirm</button>
+    <!-- Why Us button and overlay -->
+    <button id="whyus-btn">✨ Why Choose Us?</button>
+    <div id="whyus-overlay">
+      <div id="whyus-box" onclick="event.stopPropagation()">
+        <h2>Why Choose Car Catalog?</h2>
+        <ul id="whyus-list">
+          <li>🚗 Compare over 500 cars side-by-side</li>
+          <li>💰 You don't have to spend money to use this site</li>
+          <li>⚡ Always here to serve you</li>
+          <li>🛡️ 100% secure and easy to use</li>
+        </ul>
+        <button id="whyus-close">Close</button>
+      </div>
     </div>
   </div>
-
-  <div class="popup-overlay" id="signupPopup">
-    <div class="popup-box" onclick="event.stopPropagation()">
-      <h2>Sign Up</h2>
-      <input type="text" placeholder="Username" id="signupusername" />
-      <input type="password" placeholder="Password" id="signuppassword" />
-      <input type="password" placeholder="Confirm Password" id="signupconfirmpassword" />
-      <button id="submitsignup">Register</button>
-    </div>
-  </div>
-
-<button id="whyus-btn">✨ Why Choose Us?</button>
-<div id="whyus-overlay">
-  <div id="whyus-box" onclick="event.stopPropagation()">
-    <h2>Why Choose Car Catalog?</h2>
-    <ul id="whyus-list">
-      <li>🚗 Compare over 500 cars side-by-side</li>
-      <li>💰You don't have to spend money to use this site</li>
-      <li>⚡ Always here to serve you</li>
-      <li>🛡️ 100% secure and easy to use</li>
-    </ul>
-    <button id="whyus-close">Close</button>
-  </div>
-</div>
-
 
   <script src="index.js" type="module"></script>
 </body>

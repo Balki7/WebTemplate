@@ -6,6 +6,15 @@ body {
   color: #333;
 }
 
+/* Page body background image area (everything below header) */
+.page-body {
+  background-image: url("https://www.topgear.com/sites/default/files/cars-car/image/2020/09/_atf5691.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 60vh;
+}
+
 .header {
   background-color: #003366;
   color: white;
@@ -49,7 +58,6 @@ body {
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  
 }
 
 .btn:hover {
@@ -59,7 +67,7 @@ body {
 }
 
 .btn-secondary {
-padding: 18px 25px;
+  padding: 18px 25px;
 }
 
 .login q {
@@ -67,6 +75,7 @@ padding: 18px 25px;
   color: #555;
 }
 
+/* Info button */
 #infobutton {
   position: fixed;
   bottom: 30px;
@@ -90,6 +99,7 @@ padding: 18px 25px;
   border: 2px solid #0059b3;
 }
 
+/* Info overlay */
 #infobox-overlay {
   display: none;
   position: fixed;
@@ -140,9 +150,12 @@ padding: 18px 25px;
   color: #0059b3;
   border: 2px solid #0059b3;
 }
+
 #infobox-overlay.show {
   display: flex;
 }
+
+/* Popups */
 .popup-overlay {
   display: none;
   position: fixed;
@@ -194,27 +207,13 @@ padding: 18px 25px;
 
 .popup-overlay.show {
   display: flex;
-  animation: 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-
-@media screen and (max-width: 768px) {
-  .title {
-    font-size: 2.5rem;
-  }
-
-  .main-content {
-    margin-top: 40px;
-  }
-
-  .popup-box {
-    width: 90%;
-  }
-}
-
+/* Why us */
 #whyus-btn {
   margin-top: 67px;
-    position: absolute;
+  position: absolute;
   right: 633px;
   text-align: center;
   padding: 12px 24px;
@@ -287,6 +286,38 @@ padding: 18px 25px;
   color: #ff9800;
   border: 2px solid #ff9800;
 }
+
 #whyus-overlay.show {
   display: flex;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .main-content {
+    margin-top: 40px;
+  }
+
+  .popup-box {
+    width: 90%;
+  }
+
+  #whyus-btn {
+    right: 10%;
+  }
+}
+
+/* Optional: fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

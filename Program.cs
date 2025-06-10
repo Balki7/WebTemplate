@@ -133,6 +133,34 @@ class Program
                 .ToList();
             response.Send(new { cars = allCars });
           }
+          else if (request.Path == "saveComparison")
+          {
+            var body = request.GetBody<Dictionary<string, object>>();
+
+            var history = new ComparisonHistory
+            {
+              Id = Guid.NewGuid().ToString(),
+              UserId = body["userId"]?.ToString() ?? "",
+              LeftCarName = body["leftCar"]?.ToString() ?? "",
+              RightCarName = body["rightCar"]?.ToString() ?? "",
+              WinningCarName = body["winner"]?.ToString() ?? "",
+              CategoriesJson = body["categoriesJson"]?.ToString() ?? "",
+              Timestamp = DateTime.Now
+            };
+
+            database.ComparisonHistories.Add(history);
+            response.Send(new { success = true });
+          }
+          else if (request.Path == "getComparisonHistory")
+          {
+            var userId = request.GetBody<string>();
+            var history = database.ComparisonHistories
+              .Where(h => h.UserId == userId)
+              .OrderByDescending(h => h.Timestamp)
+              .ToList();
+            response.Send(history);
+          }
+
           else if (request.Path == "getusername")
           {
             var userId = request.GetBody<string>();
@@ -161,6 +189,8 @@ class Database() : DbBase("database")
 {
   public DbSet<User> Users { get; set; } = default!;
   public DbSet<Car> Cars { get; set; } = default!;
+  public DbSet<ComparisonHistory> ComparisonHistories { get; set; } = default!;
+
 }
 
 class User(string id, string username, string password)
@@ -179,4 +209,14 @@ class Car
   public int price { get; set; }
   public int year { get; set; }
   public string Horsepower { get; set; } = "";
+}
+class ComparisonHistory
+{
+  [Key] public string Id { get; set; } = "";
+  public string UserId { get; set; } = "";
+  public string LeftCarName { get; set; } = "";
+  public string RightCarName { get; set; } = "";
+  public string WinningCarName { get; set; } = "";
+  public string CategoriesJson { get; set; } = ""; // Stores color info like: { "price": "green", ... }
+  public DateTime Timestamp { get; set; }
 }
