@@ -90,7 +90,7 @@ function compareValues(id1: string, id2: string, lowerIsBetter: boolean) {
     const val1 = parseValue(el1.textContent || "");
     const val2 = parseValue(el2.textContent || "");
 
-    // Reset previous styles
+    
     el1.classList.remove("winner", "equal");
     el2.classList.remove("winner", "equal");
 
@@ -173,31 +173,4 @@ let logOutButton = document.getElementById("logOutButton") as HTMLButtonElement;
 logOutButton.onclick = async function (): Promise<void> {
     localStorage.removeItem("userId");
     location.href = "index.html";
-};
-window.onload = async () => {
-    const userId = localStorage.getItem("userId");
-    if (!userId) return;
-
-    const response = await send("getcars", { userId });
-    if (!response?.cars) return;
-
-    for (const car of response.cars) {
-        const name = car.name;
-        carData[name.toLowerCase()] = {
-            model: car.model,
-            price: car.price + "$",
-            year: car.year.toString(),
-            Horsepower: car.Horsepower
-        };
-
-        const option1 = document.createElement("option");
-        option1.value = name;
-        option1.textContent = name;
-        selectcar1.appendChild(option1);
-
-        const option2 = document.createElement("option");
-        option2.value = name;
-        option2.textContent = name;
-        selectcar2.appendChild(option2);
-    }
 };
