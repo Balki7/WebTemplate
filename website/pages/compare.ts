@@ -68,11 +68,13 @@ function updateComparison() {
 selectcar1.onchange = function () {
     currentCar1 = selectcar1.value;
     updateComparison();
+    resetAllCompareStyles()
 };
 
 selectcar2.onchange = function () {
     currentCar2 = selectcar2.value;
     updateComparison();
+    resetAllCompareStyles()
 };
 
 const compareButton = document.getElementById("comparebutton") as HTMLButtonElement;
@@ -82,6 +84,12 @@ compareButton.onclick = function () {
     compareValues("div5", "div6", false);
     compareValues("div7", "div8", false);
 };
+function resetAllCompareStyles() {
+    document.querySelectorAll(".winner, .equal, .compared").forEach(el => {
+        el.classList.remove("winner", "equal", "compared");
+        (el as HTMLElement).style.color = ""; // Also clear any manual red coloring
+    });
+}
 
 function compareValues(id1: string, id2: string, lowerIsBetter: boolean) {
     const el1 = document.getElementById(id1)!;
@@ -90,7 +98,7 @@ function compareValues(id1: string, id2: string, lowerIsBetter: boolean) {
     const val1 = parseValue(el1.textContent || "");
     const val2 = parseValue(el2.textContent || "");
 
-    
+
     el1.classList.remove("winner", "equal");
     el2.classList.remove("winner", "equal");
 
@@ -173,4 +181,31 @@ let logOutButton = document.getElementById("logOutButton") as HTMLButtonElement;
 logOutButton.onclick = async function (): Promise<void> {
     localStorage.removeItem("userId");
     location.href = "index.html";
+};
+window.onload = async () => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) return;
+
+    const response = await send("getcars", { userId });
+    if (!response?.cars) return;
+
+    for (const car of response.cars) {
+        const name = car.name;
+        carData[name.toLowerCase()] = {
+            model: car.model,
+            price: car.price + "$",
+            year: car.year.toString(),
+            Horsepower: car.Horsepower
+        };
+
+        const option1 = document.createElement("option");
+        option1.value = name;
+        option1.textContent = name;
+        selectcar1.appendChild(option1);
+
+        const option2 = document.createElement("option");
+        option2.value = name;
+        option2.textContent = name;
+        selectcar2.appendChild(option2);
+    }
 };
