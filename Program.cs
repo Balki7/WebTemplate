@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 class Program
 {
@@ -137,6 +138,29 @@ class Program
           {
             var body = request.GetBody<Dictionary<string, object>>();
 
+            // Validate categoriesJson safely
+            var categoriesJsonRaw = "";
+            if (body.TryGetValue("categoriesJson", out var catJsonObj) && catJsonObj != null)
+            {
+              categoriesJsonRaw = catJsonObj.ToString() ?? "";
+            }
+
+            try
+            {
+              if (string.IsNullOrWhiteSpace(categoriesJsonRaw))
+              {
+                categoriesJsonRaw = "{}"; // default empty JSON
+              }
+              else
+              {
+                using var jsonDoc = JsonDocument.Parse(categoriesJsonRaw); // validate JSON
+              }
+            }
+            catch (JsonException)
+            {
+              categoriesJsonRaw = "{}"; // fallback to empty JSON on error
+            }
+
             var history = new ComparisonHistory
             {
               Id = Guid.NewGuid().ToString(),
@@ -144,7 +168,7 @@ class Program
               LeftCarName = body["leftCar"]?.ToString() ?? "",
               RightCarName = body["rightCar"]?.ToString() ?? "",
               WinningCarName = body["winner"]?.ToString() ?? "",
-              CategoriesJson = body["categoriesJson"]?.ToString() ?? "",
+              CategoriesJson = categoriesJsonRaw,
               Timestamp = DateTime.Now
             };
 
@@ -160,7 +184,6 @@ class Program
               .ToList();
             response.Send(history);
           }
-
           else if (request.Path == "getusername")
           {
             var userId = request.GetBody<string>();
@@ -190,7 +213,6 @@ class Database() : DbBase("database")
   public DbSet<User> Users { get; set; } = default!;
   public DbSet<Car> Cars { get; set; } = default!;
   public DbSet<ComparisonHistory> ComparisonHistories { get; set; } = default!;
-
 }
 
 class User(string id, string username, string password)
@@ -210,6 +232,7 @@ class Car
   public int year { get; set; }
   public string Horsepower { get; set; } = "";
 }
+
 class ComparisonHistory
 {
   [Key] public string Id { get; set; } = "";

@@ -2,6 +2,7 @@ import { send } from "../utilities";
 async function saveComparisonToHistory(winner: string, categories: Record<string, string>) {
     const userId = localStorage.getItem("userId");
     if (!userId) return;
+    
 
     await send("saveComparison", {
         userId,
@@ -11,6 +12,8 @@ async function saveComparisonToHistory(winner: string, categories: Record<string
         categoriesJson: JSON.stringify(categories),
     });
 }
+
+
 
 
 const selectcar1 = document.getElementById("selectcar1") as HTMLSelectElement;
@@ -119,10 +122,11 @@ compareButton.onclick = function () {
     saveComparisonToHistory(winner, categoryResults);
 };
 
+
 function resetAllCompareStyles() {
     document.querySelectorAll(".winner, .equal, .compared").forEach(el => {
         el.classList.remove("winner", "equal", "compared");
-        (el as HTMLElement).style.color = ""; 
+        (el as HTMLElement).style.color = ""; // Also clear any manual red coloring
     });
 }
 
@@ -153,6 +157,7 @@ function compareValues(id1: string, id2: string, lowerIsBetter: boolean): "left"
         return "right";
     }
 }
+
 
 
 
@@ -247,3 +252,16 @@ window.onload = async () => {
         selectcar2.appendChild(option2);
     }
 };
+async function showWelcomeUser() {
+    const userId = localStorage.getItem("userId");
+    if (!userId) return;
+    const response = await send("getusername", userId);
+    if (response && response.username) {
+        const welcomeDiv = document.getElementById("welcomeUser");
+        if (welcomeDiv) {
+            welcomeDiv.textContent = `Welcome ${response.username}!`;
+        }
+    }
+}
+
+showWelcomeUser();
