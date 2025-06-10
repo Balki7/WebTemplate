@@ -122,7 +122,7 @@ compareButton.onclick = function () {
 function resetAllCompareStyles() {
     document.querySelectorAll(".winner, .equal, .compared").forEach(el => {
         el.classList.remove("winner", "equal", "compared");
-        (el as HTMLElement).style.color = ""; // Also clear any manual red coloring
+        (el as HTMLElement).style.color = ""; 
     });
 }
 

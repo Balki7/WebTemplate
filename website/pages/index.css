@@ -6,14 +6,6 @@ body {
   color: #333;
 }
 
-/* Page body background image area (everything below header) */
-.page-body {
-  background-image: url("https://www.topgear.com/sites/default/files/cars-car/image/2020/09/_atf5691.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 60vh;
-}
 
 .header {
   background-color: #003366;
@@ -34,7 +26,7 @@ body {
   color: #cce6ff;
 }
 
-/* Main content */
+
 .main-content {
   display: flex;
   justify-content: center;
@@ -48,7 +40,7 @@ body {
   align-items: center;
 }
 
-/* Buttons */
+/* כפתור התחברות והירשמות*/
 .btn {
   font-size: 20px;
   padding: 18px 33px;
@@ -75,7 +67,6 @@ body {
   color: #555;
 }
 
-/* Info button */
 #infobutton {
   position: fixed;
   bottom: 30px;
@@ -99,7 +90,6 @@ body {
   border: 2px solid #0059b3;
 }
 
-/* Info overlay */
 #infobox-overlay {
   display: none;
   position: fixed;
@@ -155,7 +145,6 @@ body {
   display: flex;
 }
 
-/* Popups */
 .popup-overlay {
   display: none;
   position: fixed;
@@ -210,7 +199,7 @@ body {
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Why us */
+
 #whyus-btn {
   margin-top: 67px;
   position: absolute;
@@ -291,7 +280,7 @@ body {
   display: flex;
 }
 
-/* Responsive */
+
 @media screen and (max-width: 768px) {
   .title {
     font-size: 2.5rem;
