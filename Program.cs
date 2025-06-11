@@ -138,7 +138,7 @@ class Program
           {
             var body = request.GetBody<Dictionary<string, object>>();
 
-            // Validate categoriesJson safely
+
             var categoriesJsonRaw = "";
             if (body.TryGetValue("categoriesJson", out var catJsonObj) && catJsonObj != null)
             {
@@ -149,16 +149,16 @@ class Program
             {
               if (string.IsNullOrWhiteSpace(categoriesJsonRaw))
               {
-                categoriesJsonRaw = "{}"; // default empty JSON
+                categoriesJsonRaw = "{}";
               }
               else
               {
-                using var jsonDoc = JsonDocument.Parse(categoriesJsonRaw); // validate JSON
+                using var jsonDoc = JsonDocument.Parse(categoriesJsonRaw);
               }
             }
             catch (JsonException)
             {
-              categoriesJsonRaw = "{}"; // fallback to empty JSON on error
+              categoriesJsonRaw = "{}";
             }
 
             var history = new ComparisonHistory

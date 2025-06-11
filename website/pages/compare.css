@@ -124,7 +124,7 @@ select {
   background-color: #218838;
 }
 
-/* Base popup styles */
+
 .popup {
   position: fixed;
   top: 0;
@@ -132,19 +132,18 @@ select {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  /* semi-transparent dark overlay */
+
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
-/* Hidden state */
 .hidden {
   display: none;
 }
 
-/* Popup content box */
+
 .popup-content {
   background: white;
   padding: 2rem;
@@ -158,7 +157,7 @@ select {
   animation: fadeIn 0.3s ease-out;
 }
 
-/* Input styling */
+
 .popup-content input {
   padding: 0.6rem 1rem;
   font-size: 1rem;

@@ -299,7 +299,7 @@ body {
   }
 }
 
-/* Optional: fade-in animation */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
