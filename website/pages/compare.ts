@@ -1,24 +1,24 @@
-import { send } from "../utilities";
+import { send } from "../utilities"; // מייבא את פונקציית send לשליחת בקשות לשרת
+
+// פונקציה לשמירת השוואה במסד הנתונים
 async function saveComparisonToHistory(winner: string, categories: Record<string, string>) {
-    const userId = localStorage.getItem("userId");
-    if (!userId) return;
-    
+    const userId = localStorage.getItem("userId"); // מקבל את userId מהאחסון המקומי
+    if (!userId) return; // אם אין משתמש מחובר, יוצא מהפונקציה
 
     await send("saveComparison", {
         userId,
         leftCar: currentCar1,
         rightCar: currentCar2,
         winner,
-        categoriesJson: JSON.stringify(categories),
+        categoriesJson: JSON.stringify(categories), // ממיר את אובייקט הקטגוריות ל־JSON
     });
 }
 
-
-
-
+// הגדרת אלמנטים לבחירת רכבים
 const selectcar1 = document.getElementById("selectcar1") as HTMLSelectElement;
 const selectcar2 = document.getElementById("selectcar2") as HTMLSelectElement;
 
+// תיבות להצגת פרטי הרכב
 const div1 = document.getElementById("div1")!;
 const div2 = document.getElementById("div2")!;
 const div3 = document.getElementById("div3")!;
@@ -31,6 +31,7 @@ const div8 = document.getElementById("div8")!;
 let currentCar1 = selectcar1.value;
 let currentCar2 = selectcar2.value;
 
+// מאגר רכבים
 const carData: Record<string, { model: string; price: string; year: string; Horsepower: string }> = {
     lamborgini: {
         model: "Aventador",
@@ -58,6 +59,7 @@ const carData: Record<string, { model: string; price: string; year: string; Hors
     }
 };
 
+// עדכון פרטי השוואה
 function updateComparison() {
     [div1, div2, div3, div4, div5, div6, div7, div8].forEach(div => {
         div.style.color = "";
@@ -81,20 +83,22 @@ function updateComparison() {
     }
 }
 
+// כאשר המשתמש משנה את הבחירה
 selectcar1.onchange = function () {
     currentCar1 = selectcar1.value;
     updateComparison();
-    resetAllCompareStyles()
+    resetAllCompareStyles();
 };
 
 selectcar2.onchange = function () {
     currentCar2 = selectcar2.value;
     updateComparison();
-    resetAllCompareStyles()
+    resetAllCompareStyles();
 };
 
 const compareButton = document.getElementById("comparebutton") as HTMLButtonElement;
 
+// כפתור השוואה
 compareButton.onclick = function () {
     const categoryResults: Record<string, string> = {};
 
@@ -109,7 +113,7 @@ compareButton.onclick = function () {
         categoryResults[label as string] = outcome;
     }
 
-    // Determine the winner
+    // חישוב מנצח
     let winner: string = "tie";
     const score = { [currentCar1]: 0, [currentCar2]: 0 };
     for (const result of Object.values(categoryResults)) {
@@ -122,7 +126,7 @@ compareButton.onclick = function () {
     saveComparisonToHistory(winner, categoryResults);
 };
 
-
+// איפוס סגנונות של תוצאה
 function resetAllCompareStyles() {
     document.querySelectorAll(".winner, .equal, .compared").forEach(el => {
         el.classList.remove("winner", "equal", "compared");
@@ -130,6 +134,7 @@ function resetAllCompareStyles() {
     });
 }
 
+// השוואת ערכים
 function compareValues(id1: string, id2: string, lowerIsBetter: boolean): "left" | "right" | "equal" {
     const el1 = document.getElementById(id1)!;
     const el2 = document.getElementById(id2)!;
@@ -158,16 +163,14 @@ function compareValues(id1: string, id2: string, lowerIsBetter: boolean): "left"
     }
 }
 
-
-
-
+// המרה של טקסט למספר
 function parseValue(text: string): number {
     const cleaned = text.replace(/[^\d.]/g, "");
     const parsed = parseFloat(cleaned);
     return isNaN(parsed) ? 0 : parsed;
 }
 
-
+// הוספת רכב חדש
 const addCarButton = document.getElementById("addCarButton")!;
 const popup = document.getElementById("carPopup")!;
 const closePopupButton = document.getElementById("closePopupButton")!;
@@ -220,11 +223,15 @@ submitCarButton.onclick = async () => {
         alert("Failed to add car.");
     }
 };
+
+// כפתור יציאה
 let logOutButton = document.getElementById("logOutButton") as HTMLButtonElement;
 logOutButton.onclick = async function (): Promise<void> {
     localStorage.removeItem("userId");
     location.href = "index.html";
 };
+
+// טעינת רכבים מהשרת כשהדף נטען
 window.onload = async () => {
     const userId = localStorage.getItem("userId");
     if (!userId) return;
@@ -252,6 +259,8 @@ window.onload = async () => {
         selectcar2.appendChild(option2);
     }
 };
+
+// ברכה למשתמש
 async function showWelcomeUser() {
     const userId = localStorage.getItem("userId");
     if (!userId) return;
